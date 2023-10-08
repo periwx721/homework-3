@@ -1,25 +1,84 @@
-import logo from './logo.svg';
+
+import { useState } from 'react';
 import './App.css';
+import { Forma } from './components/Forma';
+import { Render } from './components/Render';
+
 
 function App() {
+  const arr = [
+    {
+      firstName:"Perizat",
+      age: "19",
+      id:Math.random
+
+    },
+    {
+      firstName:"Nurles",
+      age: "17",
+      id:Math.random
+
+    },
+    {
+      firstName:"Baiel",
+      age: "20",
+      id:Math.random
+
+    },
+    {
+      firstName:"ImamAzim",
+      age: "18",
+      id:Math.random
+
+    },
+    {
+      firstName:"Nuriza",
+      age: "19",
+      id: Math.random
+
+    },
+    {
+      firstName:"Nargiza",
+      age: "20",
+      id:Math.random
+
+    },
+    {
+      firstName:"Ailin",
+      age: "20",
+      id:Math.random
+
+    },
+  ]
+  // const arr = []
+  const [state,setState] = useState(arr)
+  const age="20"
+  function save (obj){
+    setState((newArr)=>[...newArr,obj])
+  }
+  const filter = state.filter((el)=>el.name2 === age)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Forma onSave={save}/>
+      {filter.map((el)=>(
+        <Render name={el.name} id={el.id} name2={el.name2}/>
+      ))}
+
+
+
+
+      {arr.filter(test => test.age >= 20).map((e)=>(
+        <Render userName = {e.firstName} userAge = {e.age} />
+      ))}
+     
+     
+      
+      
+    
     </div>
   );
 }
 
 export default App;
+
+
